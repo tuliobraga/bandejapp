@@ -1,0 +1,45 @@
+<ion-view view-title="Prato do dia" ng-init="value = 'prato-feito.png'">
+  <ion-content>
+  	<div class="list card">
+
+	  <div class="item item-positive">
+  		HOJE (20/10/2015)
+	  </div>
+
+	  <div class="item item-image" style="padding-left: 30px; padding-right: 30px;">
+	    <img src="img/{{value}}">
+	  </div>
+	  <div class="item">
+  		<ul class="list">
+	  	  <li>Arroz</li>
+		  <li>Feijão</li>
+		  <li>Canelone de Presunto<span class="item-note">Lactose, Glúten</span></li>
+		  <li>Salada de Alface, Pepino e Tomate</li>
+	  	</ul>
+	  	<p>
+	      <a href="#" class="subdued">15 Like</a>
+	      <a href="#" class="subdued">5 Comments</a>
+	    </p>
+	  </div>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+	    <a class="tab-item" href="#">
+	      <i class="icon ion-thumbsup"></i>
+	      Like
+	    </a>
+	    <a class="tab-item" href="#">
+	      <i class="icon ion-chatbox"></i>
+	      Comment
+	    </a>
+	    <a class="tab-item" href="#">
+	      <i class="icon ion-share"></i>
+	      Share
+	    </a>
+	  </div>
+
+ 	  <div class="button-bar">
+        <a class="button button-positive" ng-click="value = 'prato-feito.png'">Principal</a>
+  	    <a class="button button-positive" ng-click="value = 'prato-vegetariano.png'">Vegetariano</a>
+      </div>
+
+  </ion-content>
+</ion-view>
