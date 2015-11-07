@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])
   $scope.doLogin = function() {
     if($scope.loginData.username == "aluno@cefetmg.br" && $scope.loginData.password == "123") {
       $ionicLoading.show({
-        template: 'Carregando...'
+        template: 'Efetuando login...'
       });
       $timeout(function() {
           $ionicLoading.hide();
