@@ -72,6 +72,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.alerta', {
+    url: '/alerta',
+    params: {title: null, text: null, id: null, icon: null},
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/alerta.html',
+        controller: 'AlertaCtrl'
+      }
+    }
+  })
+
   .state('noMenu', {
     abstract: true,
     templateUrl: 'templates/no-menu.html'

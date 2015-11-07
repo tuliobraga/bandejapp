@@ -112,7 +112,50 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AlertasCtrl', function($scope) {
+.controller('AlertasCtrl', function($scope, $state) {
+
+  $scope.alerts = [
+    {
+      id: "1",
+      title: "Atenção!",
+      text: "Os servidores do bandejão decidiram em reunião que amanhã (19/10/2015) haverá paralização, portanto não haverá atendimento.",
+      icon: "ion-close-circled assertive",
+    },
+    {
+      id: "2",
+      title: "Pense!",
+      text: "Não deixe as torneiras abertas enquanto escova os dentes após as refeições. Economize água, nosso planeta agradece.",
+      icon: "ion-information-circled calm"
+    },
+    {
+      id: "3",
+      title: "Participe!",
+      text: "Participe das eleições de pratos do bandeijão do CEFET-MG. Ajude-nos a decidir o prato ideal para nossas refeições.",
+      icon: "ion-information-circled calm"
+    },
+    {
+      id: "4",
+      title: "Atenção!",
+      text: "O bandejão do CEFET-MG campus II não funcionará hoje (01/10/2015) devido a falta de funcionários.",
+      icon: "ion-close-circled assertive"
+    },
+  ];
+
+  $scope.openAlert = function(id) {
+    var alert = $scope.alerts[id];
+    $state.go('app.alerta', {id: alert.id, title: alert.title, text: alert.text, icon: alert.icon});
+  };
+
+})
+
+.controller('AlertaCtrl', function($scope, $stateParams) {
+
+  $scope.alert = {
+    id: $stateParams.id,
+    title: $stateParams.title,
+    text: $stateParams.text,
+    icon: $stateParams.icon
+  };
 
 })
 
@@ -187,13 +230,6 @@ angular.module('starter.controllers', [])
   $scope.signUpData = {};
 
   $scope.doSignUp = function() {
-        console.log($scope.signUpData.firstName);
-    console.log($scope.signUpData.lastName);
-    console.log($scope.signUpData.email);
-    console.log($scope.signUpData.password);
-    console.log($scope.signUpData.confirmPassword);
-    console.log($scope.signUpData.gender);
-    console.log($scope.signUpData.termsAccepted);
     if(!$scope.signUpData.firstName || !$scope.signUpData.lastName || 
        !$scope.signUpData.gender || !$scope.signUpData.email ||
        !$scope.signUpData.password || !$scope.signUpData.confirmPassword) {

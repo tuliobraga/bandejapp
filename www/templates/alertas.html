@@ -1,27 +1,12 @@
 <ion-view view-title="Alertas">
   <ion-content>
-  	<ul class="list">
-
-	    <a class="item" href="#">
-	      <h2><i class="ion-close-circled assertive"></i> Atenção!</h2>
-	      <p>Os servidores do bandejão decidiram em reunião que amanhã (19/10/2015) haverá paralização, portanto não haverá atendimento.</p>
-	    </a>
-
-	    <a class="item" href="#">
-	      <h2><i class="ion-information-circled calm"></i> Pense!</h2>
-	      <p>Não deixe as torneiras abertas enquanto escova os dentes após as refeições. Economize água, nosso planeta agradece.</p>
-	    </a>
-
-	    <a class="item" href="#">
-	      <h2><i class="ion-information-circled calm"></i> Participe!</h2>
-	      <p>Participe das eleições de pratos do bandeijão do CEFET-MG. Ajude-nos a decidir o prato ideal para nossas refeições.</p>
-	    </a>
-
-	    <a class="item" href="#">
-	      <h2><i class="ion-close-circled assertive"></i> Atenção!</h2>
-	      <p>O bandejão do CEFET-MG campus II não funcionará hoje (01/10/2015) devido a falta de funcionários.</p>
-	    </a>
-
-	</ul>
+	  <ion-list>
+  		<a class="item item-complex item-right-editable" ng-repeat="alert in alerts" ng-click="	openAlert({{alert.id}})">
+		  <div class="item-content">
+			<h2><i class="{{alert.icon}}"></i> {{alert.title}}</h2>
+	      	<p>{{alert.text}}<i class="item-right-edit visible active ion-chevron-right icon-app-alerts"></i></p>
+		  </div>
+		</ion-item>
+	  </a>
   </ion-content>
 </ion-view>
