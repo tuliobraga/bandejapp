@@ -7,24 +7,24 @@
   </ion-header-bar>
   <ion-content>
     <div class="item"><b>Todos os campos são obrigatórios</b></div>
-    <form ng-submit="doLogin()">
+    <form ng-submit="doSignUp()">
       <div class="list">
 
         <label class="item item-input">
           <span class="input-label"><b>Nome</b></span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="signUpData.firstName">
         </label>
 
         <label class="item item-input">
           <span class="input-label"><b>Sobrenome</b></span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="signUpData.lastName">
         </label>
 
         <label class="item item-input item-select">
           <div class="input-label">
             <b>Sexo</b>
           </div>
-          <select ng-model="loginData.gender">
+          <select ng-model="signUpData.gender">
             <option selected>Masculino</option>
             <option>Feminino</option>
           </select>
@@ -32,22 +32,22 @@
 
         <label class="item item-input">
           <span class="input-label"><b>E-mail</b></span>
-          <input type="text" ng-model="loginData.email">
+          <input type="text" ng-model="signUpData.email">
         </label>
 
         <label class="item item-input">
           <span class="input-label"><b>Senha</b></span>
-          <input type="password" ng-model="loginData.password">
+          <input type="password" ng-model="signUpData.password">
         </label>
 
         <label class="item item-input">
           <span class="input-label"><b>Confirmar senha</b></span>
-          <input type="password" ng-model="loginData.confirmPassword">
+          <input type="password" ng-model="signUpData.confirmPassword">
         </label>
 
         <div class="item item-checkbox">
           <label class="checkbox" style="right: auto !important;">
-            <input type="checkbox" style="right: auto !important;">
+            <input type="checkbox" style="right: auto !important;" ng-model="signUpData.termsAccepted">
           </label>
           <b>Concordo com os <a href ng-click="termsOfUsage()">termos de uso</a>.
         </div>
