@@ -5,3 +5,11 @@ i.icon-app-alerts{
     top: 100%;
     margin-top: -50px;
 }
+
+i.ion-star {
+	color:black
+}
+
+.card.ranking{
+	margin-bottom: 0px !important;
+}

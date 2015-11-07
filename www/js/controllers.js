@@ -62,51 +62,69 @@ angular.module('starter.controllers', [])
 
   $scope.top5 = [
     {
-      title: 'DIA 11/05/15',
+      date: '11/10/15',
+      main: true,
+      image: 'prato-feito.png',
       components: [
         {title: "Arroz", note: ""},
         {title: "Feijão", note: ""},
         {title: "Bife acebolado", note: ""},
         {title: "Almeirão com cenouras", note: ""},
       ],
-      comments: [{},{}],
-      likes: []
+      likes: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+      comments: [{},{}]
     },
     {
-      title: 'DIA 11/05/15',
+      date: '01/11/15',
+      main: false,
+      image: 'prato-vegetariano.png',
       components: [
         {title: "Arroz", note: ""},
         {title: "Feijão", note: ""},
-        {title: "Bife acebolado", note: ""},
-        {title: "Almeirão com cenouras", note: ""},
-      ]
+        {title: "Hamburguer soja", note: ""},
+        {title: "Alface com beterrabas", note: ""},
+      ],
+      likes: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+      comments: [{}]
     },
     {
-      title: 'DIA 11/05/15',
+      date: '07/11/15',
+      main: true,
+      image: 'prato-feito.png',
       components: [
         {title: "Arroz", note: ""},
         {title: "Feijão", note: ""},
-        {title: "Bife acebolado", note: ""},
-        {title: "Almeirão com cenouras", note: ""},
-      ]
+        {title: "Almônegas de carne", note: ""},
+        {title: "Couve com quiabo", note: ""},
+      ],
+      likes: [{},{},{},{},{},{},{},{},{},{},{},{},{}],
+      comments: []
     },
     {
-      title: 'DIA 11/05/15',
+      date: '20/10/15',
+      main: false,
+      image: 'prato-vegetariano.png',
       components: [
         {title: "Arroz", note: ""},
         {title: "Feijão", note: ""},
-        {title: "Bife acebolado", note: ""},
-        {title: "Almeirão com cenouras", note: ""},
-      ]
+        {title: "Tofu", note: ""},
+        {title: "Batata cozida", note: ""},
+      ],
+      likes: [{},{},{},{},{},{},{},{},{},{},{}],
+      comments: []
     },
     {
-      title: 'DIA 11/05/15',
+      date: '29/10/15',
+      main: true,
+      image: 'prato-feito.png',
       components: [
         {title: "Arroz", note: ""},
         {title: "Feijão", note: ""},
-        {title: "Bife acebolado", note: ""},
+        {title: "Frango grelhado", note: ""},
         {title: "Almeirão com cenouras", note: ""},
-      ]
+      ],
+      likes: [{},{},{},{},{},{},{},{},{},{}],
+      comments: []
     }
   ];
 

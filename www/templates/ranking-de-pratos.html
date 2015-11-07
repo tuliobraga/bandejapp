@@ -1,5 +1,10 @@
 <ion-view view-title="Ranking de pratos">
   <ion-content>
+  <div class="card ranking">
+      <p class="item item-text-wrap">
+        O ranking de pratos é válido para os pratos servidos nos últimos 30 dias.
+      </p>
+    </div>
   	<ul class="list">
 
 	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
@@ -9,11 +14,11 @@
 	  	    <div class="list card">
 
 			  <div class="item item-positive">
-		  		{{dish.title}}
+		  		<span class="badge badge-energized ion-star">{{$index+1}}</span> Prato <span ng-if="dish.main">principal</span><span ng-if="!dish.main">vegetariano</span> do dia {{dish.date}}
 			  </div>
 
 		  	  <div class="item item-image" style="padding-left: 30px; padding-right: 30px;">
-		    	<img src="img/prato-feito.png">
+		    	<img src="img/{{dish.image}}">
 		  	  </div>
 		  	  <div class="item">
 	  			<ul class="list">
@@ -26,25 +31,6 @@
 			      <a href="#" class="subdued">{{dish.comments.length}} Comments</a>
 			    </p>
 		  	  </div>
-		      <div class="item tabs tabs-secondary tabs-icon-left">
-			    <a class="tab-item" href="#">
-			      <i class="icon ion-thumbsup"></i>
-			      Like
-			    </a>
-			    <a class="tab-item" href="#">
-			      <i class="icon ion-chatbox"></i>
-			      Comment
-			    </a>
-			    <a class="tab-item" href="#">
-			      <i class="icon ion-share"></i>
-			      Share
-			    </a>
-			  </div>
-
-	 	      <div class="button-bar">
-	            <a class="button button-positive" ng-click="value = 'prato-feito.png'">Principal</a>
-	  	        <a class="button button-positive" ng-click="value = 'prato-vegetariano.png'">Vegetariano</a>
-	          </div>
 		    </div>
 		  </div>
 	    </ion-slide>
