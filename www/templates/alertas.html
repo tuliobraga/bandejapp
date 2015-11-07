@@ -1,7 +1,7 @@
 <ion-view view-title="Alertas">
   <ion-content>
 	  <ion-list>
-  		<a class="item item-complex item-right-editable" ng-repeat="alert in alerts" ng-click="	openAlert({{alert.id}})">
+  		<a class="item item-complex item-right-editable" ng-repeat="alert in alerts" ng-click="	openAlert($index)">
 		  <div class="item-content">
 			<h2><i class="{{alert.icon}}"></i> {{alert.title}}</h2>
 	      	<p>{{alert.text}}<i class="item-right-edit visible active ion-chevron-right icon-app-alerts"></i></p>

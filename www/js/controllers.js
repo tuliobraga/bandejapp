@@ -159,8 +159,8 @@ angular.module('starter.controllers', [])
     },
   ];
 
-  $scope.openAlert = function(id) {
-    var alert = $scope.alerts[id];
+  $scope.openAlert = function(index) {
+    var alert = $scope.alerts[index];
     $state.go('app.alerta', {id: alert.id, title: alert.title, text: alert.text, icon: alert.icon});
   };
 
