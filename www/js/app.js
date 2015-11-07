@@ -93,6 +93,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: "/cadastrar",
     templateUrl: "templates/sign-up.html",
     controller: 'SignUpCtrl'
+  })
+
+  .state('termosDeUso', {
+    url: '/termos-de-uso',
+    templateUrl: 'templates/termos-de-uso.html',
+    controller: 'TermosDeUsoCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback

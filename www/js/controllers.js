@@ -1,3 +1,11 @@
+var showError = function(text, $ionicPopup) {
+  var alertPopup = $ionicPopup.alert({
+      title: 'Falha',
+      template: text
+    });
+  return alertPopup;
+}
+
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
@@ -102,36 +110,50 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
 
   $scope.doLogin = function() {
-    if($scope.loginData.username == "aluno@cefetmg.br" && $scope.loginData.password == "123") {
+    // verifying if email or password is empty
+    if (!$scope.loginData.username || !$scope.loginData.password){
+      showError('Email e senha são obrigatórios para efetuar login.', $ionicPopup);
+    } else {
+      // Start login
       $ionicLoading.show({
         template: 'Efetuando login...'
       });
+
+      // simulate user wait
       $timeout(function() {
-          $ionicLoading.hide();
-          var alertPopup = $ionicPopup.alert({
-            title: 'Sucesso',
-            template: 'Login efetuado com sucesso!'
-          });
-          alertPopup.then(function(res) {
-            $state.go('app.pratoDoDia');
-          });
-        }, 3000);
-    } else if ($scope.loginData.username == "aluno@cefetmg.br" && $scope.loginData.password && $scope.loginData.password  != "123") {
-      var alertPopup = $ionicPopup.alert({
-        title: 'Falha',
-        template: 'Senha não corresponde ao email digitado!'
-      });
-    } else if ($scope.loginData.username && $scope.loginData.password) {
-      var alertPopup = $ionicPopup.alert({
-        title: 'Falha',
-        template: 'Nenhum usuário encontrado para este email!'
-      });
-    } else {
-      var alertPopup = $ionicPopup.alert({
-        title: 'Falha',
-        template: 'Email e senha são obrigatórios para efetuar login.'
-      });
+        $ionicLoading.hide();
+
+        // simulate server-side login
+        try {
+          if(login())
+            enter();
+        } catch(e) {
+          showError(e, $ionicPopup);
+        }
+      }, 2000);
+
     }
+  };
+
+  var login = function() {
+    if($scope.loginData.username == "aluno@cefetmg.br") {
+      if($scope.loginData.password == "123")
+        return true;
+      else
+        throw "Senha não corresponde ao email digitado!"
+    }
+
+    throw "Nenhum usuário encontrado para este email!"
+  };
+
+  var enter = function () {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Sucesso',
+      template: 'Login efetuado com sucesso!'
+    });
+    alertPopup.then(function(res) {
+      $state.go('app.pratoDoDia');
+    });
   };
 
   $scope.signUp = function() {
@@ -163,11 +185,28 @@ angular.module('starter.controllers', [])
   $scope.singUpData = {};
 
   $scope.signUp = function() {
-    
+    if($scope.singUpData.firstName && $scope.singUpData.lastName && 
+       $scope.singUpData.gender && $scope.singUpData.email &&
+       $scope.singUpData.password && $scope.singUpData.confirmPassword) {
+
+    }
+  };
+
+  $scope.termsOfUsage = function() {
+    $state.go('termosDeUso');
   };
 
   $scope.back = function() {
     $state.go('login');
   };
   
+})
+
+.controller('TermosDeUsoCtrl', function($scope, $state) {
+
+  $scope.back = function() {
+    $state.go('signUp');
+  };
+  
 });
+
