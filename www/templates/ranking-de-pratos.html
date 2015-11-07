@@ -1,6 +1,55 @@
 <ion-view view-title="Ranking de pratos">
   <ion-content>
+  	<ul class="list">
 
+	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
+	    <ion-slide ng-repeat="dish in top5">
+	      <div class="box blue">
+	    	
+	  	    <div class="list card">
 
+			  <div class="item item-positive">
+		  		{{dish.title}}
+			  </div>
+
+		  	  <div class="item item-image" style="padding-left: 30px; padding-right: 30px;">
+		    	<img src="img/prato-feito.png">
+		  	  </div>
+		  	  <div class="item">
+	  			<ul class="list">
+			  	  <li ng-repeat="component in dish.components">{{component.title}}
+			  	  	<span class="item-note">{{component.note}}</span>
+		  	      </li>
+			  	</ul>
+		  		<p>
+			      <a href="#" class="subdued">{{dish.likes.length}} Likes</a>
+			      <a href="#" class="subdued">{{dish.comments.length}} Comments</a>
+			    </p>
+		  	  </div>
+		      <div class="item tabs tabs-secondary tabs-icon-left">
+			    <a class="tab-item" href="#">
+			      <i class="icon ion-thumbsup"></i>
+			      Like
+			    </a>
+			    <a class="tab-item" href="#">
+			      <i class="icon ion-chatbox"></i>
+			      Comment
+			    </a>
+			    <a class="tab-item" href="#">
+			      <i class="icon ion-share"></i>
+			      Share
+			    </a>
+			  </div>
+
+	 	      <div class="button-bar">
+	            <a class="button button-positive" ng-click="value = 'prato-feito.png'">Principal</a>
+	  	        <a class="button button-positive" ng-click="value = 'prato-vegetariano.png'">Vegetariano</a>
+	          </div>
+		    </div>
+		  </div>
+	    </ion-slide>
+	  </ion-slide-box>
+
+	</ul>
   </ion-content>
 </ion-view>
