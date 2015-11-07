@@ -97,19 +97,25 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('LoginCtrl', function($scope, $state, $ionicPopup) {
+.controller('LoginCtrl', function($scope, $state, $timeout, $ionicPopup, $ionicLoading) {
   
   $scope.loginData = {};
 
   $scope.doLogin = function() {
     if($scope.loginData.username == "aluno@cefetmg.br" && $scope.loginData.password == "123") {
-      var alertPopup = $ionicPopup.alert({
-        title: 'Sucesso',
-        template: 'Login efetuado com sucesso!'
+      $ionicLoading.show({
+        template: 'Carregando...'
       });
-      alertPopup.then(function(res) {
-        $state.go('app.pratoDoDia');
-      });
+      $timeout(function() {
+          $ionicLoading.hide();
+          var alertPopup = $ionicPopup.alert({
+            title: 'Sucesso',
+            template: 'Login efetuado com sucesso!'
+          });
+          alertPopup.then(function(res) {
+            $state.go('app.pratoDoDia');
+          });
+        }, 3000);
     } else if ($scope.loginData.username == "aluno@cefetmg.br" && $scope.loginData.password && $scope.loginData.password  != "123") {
       var alertPopup = $ionicPopup.alert({
         title: 'Falha',
