@@ -24,21 +24,21 @@ angular.module('starter.controllers', [])
 
 .controller('PratoDoDiaCtrl', function($scope) {
 
-  $scope.pratoPrincipal = [
+  $scope.mainDish = [
     { title: 'Arroz', id: 1 },
     { title: 'Feijão', id: 2 },
     { title: 'Salada de Alface', id: 3 },
-    { title: 'Cubos Suínos', id: 4 }
+    { title: 'Canelone de presunto', extra: 'Lactose, Glúten', id: 4 }
   ];
 
-  $scope.pratoVegetariano = [
+  $scope.vegetarianDish = [
     { title: 'Arroz', id: 1 },
     { title: 'Feijão', id: 2 },
     { title: 'Salada de Alface', id: 3 },
     { title: 'Almôndegas de Soja', id: 4 }
   ];
 
-  $scope.sobremesa = [
+  $scope.desert = [
     { title: 'Maçã', id: 1 },
     { title: 'Banana', id: 2 },
     { title: 'Paçoquinha', id: 3 }
