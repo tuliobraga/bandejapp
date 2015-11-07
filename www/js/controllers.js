@@ -229,7 +229,7 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('RetrievePasswordCtrl', function($scope, $state) {
+.controller('RetrievePasswordCtrl', function($scope, $state, $timeout, $ionicPopup, $ionicLoading) {
   
   $scope.retrieveData = {};
 
@@ -237,9 +237,43 @@ angular.module('starter.controllers', [])
     $state.go('login');
   };
 
-  $scope.retrievePassword = function() {
-    
+  $scope.doRetrievePassword = function() {
+    // verifying if email is empty
+    if (!$scope.retrieveData.email){
+      showError('Email é obrigatório para recuperação.', $ionicPopup);
+    } else {
+      // Start login
+      $ionicLoading.show({
+        template: 'Recuperando senha...'
+      });
+
+      // simulate user wait
+      $timeout(function() {
+        $ionicLoading.hide();
+
+        // simulate server-side login
+        try {
+          if(retrievePassword()) {
+            var text = "Um link de recuperação foi enviado para este e-mail. Acesse-o para recuperar sua senha. Caso não o encontre, certifique-se de que o mesmo não tenha sido filtrado para a caixa de spams.";
+            var alertPopup = $ionicPopup.alert({
+              title: 'Sucesso',
+              template: text
+            });
+            alertPopup.then(function(res) {
+              $state.go('login');
+            });
+            return alertPopup;
+          }
+        } catch(e) {
+          showError(e, $ionicPopup);
+        }
+      }, 2000);
+    }
   };
+
+  var retrievePassword = function() {
+    return true;
+  }
   
 })
 
@@ -269,7 +303,7 @@ angular.module('starter.controllers', [])
         // simulate server-side login
         try {
           if(signUp())
-            var msg = "Cadastro efetuado com sucesso! Um e-mail de confirmação foi enviado para você, favor verificar sua caixa de entrada. Caso não o encontre, certifique-se de que o mesmo não tenha sido filtrado para a caixa de spams.";
+            var msg = "Cadastro efetuado com sucesso! Um e-mail de confirmação foi enviado para você, favor verificar sua caixa de entrada. Caso não encontre, certifique-se de que o mesmo não tenha sido filtrado para a caixa de spams.";
             enter(msg, $state, $ionicPopup);
         } catch(e) {
           showError(e, $ionicPopup);
