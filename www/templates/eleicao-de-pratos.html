@@ -1,6 +1,22 @@
 <ion-view view-title="Eleição de pratos">
   <ion-content>
-
-
+    <div class="list card">
+      <div class="item item-positive">Votação para prato do dia 20/10/2015</div>
+	  <div class="item item-image" ng-repeat="dish in dishes">
+	  	<div class="row">
+	  	  <div class="col">
+	      	<img src="img/prato-feito.png">
+	      </div>
+  	  	  <div class="col">
+  	  		{{dish.percentage}}
+	      </div>
+	    </div>
+	    <div class="item">
+	  	  <ul class="list">
+		  	<li ng-repeat="component in dish.components">{{component.title}}<span class="item-note">{{component.extra}}</span></li>
+		  </ul>
+	  	</div>
+      </div>
+  	</div>
   </ion-content>
 </ion-view>

@@ -1,4 +1,4 @@
-<ion-view view-title="Prato do dia" ng-init="value = 'prato-feito.png'; dish = mainDish">
+<ion-view view-title="Prato do dia" ng-init="dish = mainDish">
   <ion-content>
   	<div class="list card">
 
@@ -7,15 +7,15 @@
 	  </div>
 
 	  <div class="item item-image" style="padding-left: 30px; padding-right: 30px;">
-	    <img src="img/{{value}}">
+	    <img src="img/{{dish.image}}">
 	  </div>
 	  <div class="item">
   		<ul class="list">
-	  	  <li ng-repeat="component in dish">{{component.title}}<span class="item-note">{{component.extra}}</span></li>
+	  	  <li ng-repeat="component in dish.components">{{component.title}}<span class="item-note">{{component.extra}}</span></li>
 	  	</ul>
 	  	<p>
-	      <a href="#" class="subdued">15 curtiram</a>
-	      <a href="#" class="subdued">5 comentários</a>
+	      <a href class="subdued">15 curtiram</a>
+	      <a href class="subdued" ng-click="openComments({{component.id}})">5 comentários</a>
 	    </p>
 	  </div>
       <div class="item tabs tabs-secondary tabs-icon-left">
@@ -34,9 +34,10 @@
 	  </div>
 
  	  <div class="button-bar">
-        <a class="button button-positive" ng-click="value = 'prato-feito.png'; dish = mainDish;">Principal</a>
-  	    <a class="button button-positive" ng-click="value = 'prato-vegetariano.png'; dish = vegetarianDish">Vegetariano</a>
+        <a class="button button-positive" ng-click="dish = mainDish;">Principal</a>
+  	    <a class="button button-positive" ng-click="dish = vegetarianDish">Vegetariano</a>
       </div>
+  	</div>
 
   </ion-content>
 </ion-view>

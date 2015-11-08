@@ -22,21 +22,49 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 })
 
-.controller('PratoDoDiaCtrl', function($scope) {
+.controller('PratoDoDiaCtrl', function($scope, $state) {
 
-  $scope.mainDish = [
-    { title: 'Arroz', id: 1 },
-    { title: 'Feijão', id: 2 },
-    { title: 'Salada de Alface', id: 3 },
-    { title: 'Canelone de presunto', extra: 'Lactose, Glúten', id: 4 }
-  ];
+  $scope.mainDish = {
+    id: 1,
+    main: true,
+    image: 'prato-feito.png',
+    components: [
+      { title: 'Arroz', id: 1 },
+      { title: 'Feijão', id: 2 },
+      { title: 'Salada de Alface', id: 3 },
+      { title: 'Canelone de presunto', extra: 'Lactose, Glúten', id: 4 }
+    ],
+    comments: [
+      {
+        user: 'Matheus Nogueira',
+        text: 'Excelente! Só faltou uma banana.'
+      },
+      {
+        user: 'Thalita Santana',
+        text: 'Fofinho! Prato muito colorido.'
+      },
+      {
+        user: 'Thales Brant',
+        text: 'Gostei não zé.'
+      },
+      {
+        user: 'Guilherme Andrade',
+        text: 'Tão bom que comi três vezes.'
+      }
+    ]
+  };
 
-  $scope.vegetarianDish = [
-    { title: 'Arroz', id: 1 },
-    { title: 'Feijão', id: 2 },
-    { title: 'Salada de Alface', id: 3 },
-    { title: 'Almôndegas de Soja', id: 4 }
-  ];
+  $scope.vegetarianDish = {
+    id: 2,
+    main: false,
+    image: 'prato-vegetariano.png',
+    components: [
+      { title: 'Arroz', id: 1 },
+      { title: 'Feijão', id: 2 },
+      { title: 'Salada de Alface', id: 3 },
+      { title: 'Almôndegas de Soja', id: 4 }
+    ]
+  };
 
   $scope.desert = [
     { title: 'Maçã', id: 1 },
@@ -44,17 +72,34 @@ angular.module('starter.controllers', [])
     { title: 'Paçoquinha', id: 3 }
   ];
 
-  $scope.verPratoPrincipal = function() {
-
-  }
-
-  $scope.verPratoVegetariano = function() {
-    
+  $scope.openComments = function(id) {
+    $state.go('app.comentarios', {id: id});
   }
 
 })
 
 .controller('EleicaoDePratosCtrl', function($scope) {
+  $scope.dishes = [
+    {
+      main: true,
+      image: 'prato-feito.png',
+      components: [
+        {title: "Arroz", note: ""},
+        {title: "Feijão", note: ""},
+        {title: "Canelone de presunto", note: "Lactose, Glúten"},
+        {title: "Almeirão com cenouras", note: ""},
+      ]
+    },
+    {
+      image: 'prato-vegetariano.png',
+      components: [
+        {title: "Arroz", note: ""},
+        {title: "Feijão", note: ""},
+        {title: "Hamburguer soja", note: ""},
+        {title: "Alface com beterrabas", note: ""},
+      ]
+    }
+  ];
 
 })
 
@@ -332,5 +377,34 @@ angular.module('starter.controllers', [])
     $state.go('signUp');
   };
   
-});
+})
 
+.controller('ComentariosCtrl', function($scope, $stateParams) {
+
+  $scope.commentData;
+
+  $scope.comments = [
+    {
+      user: 'Matheus Nogueira',
+      text: 'Excelente! Só faltou uma banana.'
+    },
+    {
+      user: 'Thalita Santana',
+      text: 'Fofinho! Prato muito colorido.'
+    },
+    {
+      user: 'Thales Brant',
+      text: 'Gostei não zé.'
+    },
+    {
+      user: 'Guilherme Andrade',
+      text: 'Tão bom que comi três vezes.'
+    }
+  ];
+
+  $scope.doComment = function() {
+    $scope.comments.push({user: 'Túlio Braga', text: $scope.commentData.text});
+    $scope.commentData.text = null;
+  }
+
+});

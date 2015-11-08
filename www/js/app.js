@@ -83,6 +83,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.comentarios', {
+    url: '/comentarios',
+    params: {id: null},
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/comentarios.html',
+        controller: 'ComentariosCtrl'
+      }
+    }
+  })
+
   .state('noMenu', {
     abstract: true,
     templateUrl: 'templates/no-menu.html'
