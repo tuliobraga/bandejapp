@@ -85,7 +85,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   .state('app.comentarios', {
     url: '/comentarios',
-    params: {id: null},
+    params: {id: null, write: null},
     views: {
       'menuContent': {
         templateUrl: 'templates/comentarios.html',

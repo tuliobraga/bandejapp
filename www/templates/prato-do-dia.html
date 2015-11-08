@@ -1,9 +1,9 @@
-<ion-view view-title="Prato do dia" ng-init="dish = mainDish">
+<ion-view view-title="Prato do dia" ng-init="main = 'active'; dish = mainDish">
   <ion-content>
   	<div class="list card">
 
 	  <div class="item item-positive">
-  		HOJE (20/10/2015)
+  		HOJE (20/10/2015) - {{dish.type}}
 	  </div>
 
 	  <div class="item item-image" style="padding-left: 30px; padding-right: 30px;">
@@ -15,7 +15,7 @@
 	  	</ul>
 	  	<p>
 	      <a href class="subdued">15 curtiram</a>
-	      <a href class="subdued" ng-click="openComments({{component.id}})">5 comentários</a>
+	      <a href class="subdued" ng-click="openComments({{dish.id}})">5 comentários</a>
 	    </p>
 	  </div>
       <div class="item tabs tabs-secondary tabs-icon-left">
@@ -23,7 +23,7 @@
 	      <i class="icon ion-thumbsup"></i>
 	      Curtir
 	    </a>
-	    <a class="tab-item" href="#">
+	    <a class="tab-item" href ng-click="openCommentsToWrite({{dish.id}})">
 	      <i class="icon ion-chatbox"></i>
 	      Comentar
 	    </a>
@@ -34,8 +34,8 @@
 	  </div>
 
  	  <div class="button-bar">
-        <a class="button button-positive" ng-click="dish = mainDish;">Principal</a>
-  	    <a class="button button-positive" ng-click="dish = vegetarianDish">Vegetariano</a>
+        <a class="button button-positive {{main}}" ng-click="main = 'active'; veg = ''; dish = mainDish;">Principal</a>
+  	    <a class="button button-positive {{veg}}" ng-click="main = ''; veg = 'active'; dish = vegetarianDish">Vegetariano</a>
       </div>
   	</div>
 

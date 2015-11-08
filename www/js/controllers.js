@@ -1,3 +1,5 @@
+var focusEnabled = false;
+
 var showError = function(text, $ionicPopup) {
   var alertPopup = $ionicPopup.alert({
       title: 'Falha',
@@ -19,6 +21,17 @@ var enter = function (text, $state, $ionicPopup) {
 
 angular.module('starter.controllers', [])
 
+.directive('focusMe', function($timeout) {
+  return {
+    link: function(scope, element, attrs) {
+      if(focusEnabled)
+        $timeout(function() {
+          element[0].focus(); 
+        });
+    }
+  };
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 })
 
@@ -27,6 +40,7 @@ angular.module('starter.controllers', [])
   $scope.mainDish = {
     id: 1,
     main: true,
+    type: 'Principal',
     image: 'prato-feito.png',
     components: [
       { title: 'Arroz', id: 1 },
@@ -57,6 +71,7 @@ angular.module('starter.controllers', [])
   $scope.vegetarianDish = {
     id: 2,
     main: false,
+    type: 'Vegetariano',
     image: 'prato-vegetariano.png',
     components: [
       { title: 'Arroz', id: 1 },
@@ -73,7 +88,11 @@ angular.module('starter.controllers', [])
   ];
 
   $scope.openComments = function(id) {
-    $state.go('app.comentarios', {id: id});
+    $state.go('app.comentarios', {id: id, write: false});
+  }
+
+  $scope.openCommentsToWrite = function(id) {
+    $state.go('app.comentarios', {id: id, write: true});
   }
 
 })
@@ -380,7 +399,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ComentariosCtrl', function($scope, $stateParams) {
-
+  focusEnabled = $stateParams.write;
   $scope.commentData;
 
   $scope.comments = [
