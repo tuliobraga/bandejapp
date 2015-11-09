@@ -13,3 +13,22 @@ i.ion-star {
 .card.ranking{
 	margin-bottom: 0px !important;
 }
+
+.percentage h1 {
+	text-align: center;
+	line-height: 115px;
+	font-size: 48px;
+}
+
+.percentage.red h1 {
+	color: red;
+}
+
+.percentage.green h1 {
+	color: green;
+}
+
+.vote button {
+	width: 100%;
+	height: 115px;
+}

@@ -1,0 +1,41 @@
+<ion-view view-title="Ranking de pratos">
+  <ion-content>
+  <div class="card ranking">
+      <p class="item item-text-wrap">
+        O ranking de pratos é válido para os pratos servidos nos últimos 30 dias.
+      </p>
+    </div>
+  	<ul class="list">
+
+	  <ion-slide-box on-slide-changed="slideHasChanged($index)">
+	    <ion-slide ng-repeat="dish in top5">
+	      <div class="box blue">
+	    	
+	  	    <div class="list card">
+
+			  <div class="item item-positive">
+		  		<span class="badge badge-energized ion-star">{{$index+1}}</span> Prato <span ng-if="dish.main">principal</span><span ng-if="!dish.main">vegetariano</span> do dia {{dish.date}}
+			  </div>
+
+		  	  <div class="item item-image" style="padding-left: 30px; padding-right: 30px;">
+		    	<img src="img/{{dish.image}}">
+		  	  </div>
+		  	  <div class="item">
+	  			<ul class="list">
+			  	  <li ng-repeat="component in dish.components">{{component.title}}
+			  	  	<span class="item-note">{{component.note}}</span>
+		  	      </li>
+			  	</ul>
+		  		<p>
+			      <a href="#" class="subdued">{{dish.likes.length}} Likes</a>
+			      <a href="#" class="subdued">{{dish.comments.length}} Comments</a>
+			    </p>
+		  	  </div>
+		    </div>
+		  </div>
+	    </ion-slide>
+	  </ion-slide-box>
+
+	</ul>
+  </ion-content>
+</ion-view>

@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
         text: 'Excelente! Só faltou uma banana.'
       },
       {
-        user: 'Thalita Santana',
+        user: 'Talita Santana',
         text: 'Fofinho! Prato muito colorido.'
       },
       {
@@ -64,8 +64,10 @@ angular.module('starter.controllers', [])
       {
         user: 'Guilherme Andrade',
         text: 'Tão bom que comi três vezes.'
-      }
-    ]
+      },
+    ],
+    likes: [{},{},{},{},{},{},{},{},{},{}],
+    liked: false
   };
 
   $scope.vegetarianDish = {
@@ -78,7 +80,10 @@ angular.module('starter.controllers', [])
       { title: 'Feijão', id: 2 },
       { title: 'Salada de Alface', id: 3 },
       { title: 'Almôndegas de Soja', id: 4 }
-    ]
+    ],
+    comments: [],
+    likes: [{},{}],
+    liked: false
   };
 
   $scope.desert = [
@@ -95,30 +100,204 @@ angular.module('starter.controllers', [])
     $state.go('app.comentarios', {id: id, write: true});
   }
 
+  $scope.like = function(main) {
+    if(main) {
+      $scope.mainDish.liked ? $scope.mainDish.likes.pop({}) : $scope.mainDish.likes.push({});
+      $scope.mainDish.liked = !$scope.mainDish.liked;
+    } else {
+      $scope.vegetarianDish.liked ? $scope.vegetarianDish.likes.pop({}) : $scope.vegetarianDish.likes.push({});
+      $scope.vegetarianDish.liked = !$scope.vegetarianDish.liked;
+    }
+  }
+
 })
 
-.controller('EleicaoDePratosCtrl', function($scope) {
-  $scope.dishes = [
+.controller('EleicaoDePratosCtrl', function($scope, $timeout, $ionicLoading, $ionicPopup) {
+  $scope.days = [
     {
-      main: true,
-      image: 'prato-feito.png',
-      components: [
-        {title: "Arroz", note: ""},
-        {title: "Feijão", note: ""},
-        {title: "Canelone de presunto", note: "Lactose, Glúten"},
-        {title: "Almeirão com cenouras", note: ""},
+      title: 'Segunda-feira',
+      dishes: [
+        {
+          main: true,
+          image: 'prato-feito.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Canelone de presunto", note: "Lactose, Glúten"},
+            {title: "Almeirão com cenouras", note: ""},
+          ],
+          percentage: 65,
+          voted: false
+        },
+        {
+          image: 'prato-vegetariano.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Hamburguer soja", note: ""},
+            {title: "Alface com beterrabas", note: ""},
+          ],
+          percentage: 35,
+          voted: false
+        }
       ]
     },
     {
-      image: 'prato-vegetariano.png',
-      components: [
-        {title: "Arroz", note: ""},
-        {title: "Feijão", note: ""},
-        {title: "Hamburguer soja", note: ""},
-        {title: "Alface com beterrabas", note: ""},
+      title: 'Terça-feira',
+      dishes: [
+        {
+          main: true,
+          image: 'prato-vegetariano.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Canelone de presunto", note: "Lactose, Glúten"},
+            {title: "Almeirão com cenouras", note: ""},
+          ],
+          percentage: 65,
+          voted: false
+        },
+        {
+          image: 'prato-feito.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Hamburguer soja", note: ""},
+            {title: "Alface com beterrabas", note: ""},
+          ],
+          percentage: 35,
+          voted: false
+        }
+      ]
+    },
+    {
+      title: 'Quarta-feira',
+      dishes: [
+        {
+          main: true,
+          image: 'prato-feito.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Canelone de presunto", note: "Lactose, Glúten"},
+            {title: "Almeirão com cenouras", note: ""},
+          ],
+          percentage: 65,
+          voted: false
+        },
+        {
+          image: 'prato-vegetariano.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Hamburguer soja", note: ""},
+            {title: "Alface com beterrabas", note: ""},
+          ],
+          percentage: 35,
+          voted: false
+        }
+      ]
+    },
+    {
+      title: 'Quinta-feira',
+      dishes: [
+        {
+          main: true,
+          image: 'prato-vegetariano.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Canelone de presunto", note: "Lactose, Glúten"},
+            {title: "Almeirão com cenouras", note: ""},
+          ],
+          percentage: 65,
+          voted: false
+        },
+        {
+          image: 'prato-feito.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Hamburguer soja", note: ""},
+            {title: "Alface com beterrabas", note: ""},
+          ],
+          percentage: 35,
+          voted: false
+        }
+      ]
+    },
+    {
+      title: 'Sexta-feira',
+      dishes: [
+        {
+          main: true,
+          image: 'prato-feito.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Canelone de presunto", note: "Lactose, Glúten"},
+            {title: "Almeirão com cenouras", note: ""},
+          ],
+          percentage: 65,
+          voted: false
+        },
+        {
+          image: 'prato-vegetariano.png',
+          components: [
+            {title: "Arroz", note: ""},
+            {title: "Feijão", note: ""},
+            {title: "Hamburguer soja", note: ""},
+            {title: "Alface com beterrabas", note: ""},
+          ],
+          percentage: 35,
+          voted: false
+        }
       ]
     }
   ];
+
+  $scope.doVote = function(day_index, dish_index) {
+    var dishes = $scope.days[day_index].dishes;
+    if(dishes[dish_index].voted == true) {
+      cancelVote(dishes, dish_index);
+    } else {
+      vote(dishes, dish_index)
+    }
+  }
+
+  var vote = function(dishes, dish_index) {
+    dishes[dish_index].voted = true;
+    if(dishes[dish_index].percentage <= 99) {
+      dishes[dish_index].percentage++;
+    }
+
+    var other_index = (dish_index+1)%2; // 0 or 1
+    dishes[other_index].voted = false;
+    if(dishes[other_index].percentage >= 1) {
+      dishes[other_index].percentage--;
+    }
+  }
+
+  var cancelVote = function(dishes, dish_index) {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Cancelar voto',
+      template: 'Você tem certeza que deseja remover o voto que você deu?',
+      cancelText: 'Manter voto',
+      okText: 'Remover'
+    });
+
+    confirmPopup.then(function(res) {
+      if(res) {
+        $ionicLoading.show({
+          template: 'Removendo voto...'
+        });
+        $timeout(function() {
+          $ionicLoading.hide();
+          
+        }, 10000);
+      }
+    });
+  }
 
 })
 
@@ -398,32 +577,61 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('ComentariosCtrl', function($scope, $stateParams) {
+.controller('ComentariosCtrl', function($scope, $stateParams, $timeout, $ionicLoading, $ionicPopup) {
   focusEnabled = $stateParams.write;
   $scope.commentData;
 
   $scope.comments = [
     {
       user: 'Matheus Nogueira',
-      text: 'Excelente! Só faltou uma banana.'
+      text: 'Excelente! Só faltou uma banana.',
+      user_id: 1
     },
     {
-      user: 'Thalita Santana',
-      text: 'Fofinho! Prato muito colorido.'
+      user: 'Talita Santana',
+      text: 'Fofinho! Prato muito colorido.',
+      user_id: 2
+    },
+    {
+      user: 'Aluno CEFET-MG',
+      text: '"Legau"',
+      user_id: 0
     },
     {
       user: 'Thales Brant',
-      text: 'Gostei não zé.'
+      text: 'Gostei não zé.',
+      user_id: 3
     },
     {
       user: 'Guilherme Andrade',
-      text: 'Tão bom que comi três vezes.'
+      text: 'Tão bom que comi três vezes.',
+      user_id: 4
     }
   ];
 
   $scope.doComment = function() {
-    $scope.comments.push({user: 'Túlio Braga', text: $scope.commentData.text});
+    $scope.comments.push({user: 'Aluno CEFET-MG', text: $scope.commentData.text, user_id: 0});
     $scope.commentData.text = null;
+  };
+
+  $scope.deleteComment = function(index) {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Remover comentário',
+        template: 'Você tem certeza que deseja remover este comentário?',
+        cancelText: 'Cancelar',
+        okText: 'Excluir'
+      });
+      confirmPopup.then(function(res) {
+      if(res) {
+        $ionicLoading.show({
+          template: 'Removendo comentário...'
+        });
+        $timeout(function() {
+          $ionicLoading.hide();
+          $scope.comments.splice(index, 1);
+        }, 1000);
+      }
+    });
   }
 
 });

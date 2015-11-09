@@ -1,0 +1,25 @@
+<ion-view view-title="Comentários" ng-init="initialize()">
+  <ion-content>
+	<ion-list>
+	  <a class="item item-complex item-right-editable" ng-repeat="comment in comments">
+		<div class="item-content">
+		  <h2></i> {{comment.user}}</h2>
+		  <p>{{comment.text}}</p>
+	    </div>
+	  </a>
+	<ion-list>
+  </ion-content>
+  <!-- align to the bottom of the page -->
+  <div style="position: absolute; bottom: 0px; width: 100%">
+	<div style="text-align: center">
+      <div style="text-align: center">
+	    <form ng-submit="doComment()">
+	      <label class="item item-input">
+	        <input type="text" ng-model="commentData.text" placeholder="Digite aqui seu comentário..." id="comment-text" focus-me/>
+	        <button type="submit" class="button button-positive" style="margin-right: 5px">Enviar</button>
+	      </label>
+	    </form>
+	  </div>
+	</div>
+  </div>
+</ion-view>

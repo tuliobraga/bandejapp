@@ -25,49 +25,105 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.pratoDoDia', {
+    url: '/prato-do-dia',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/prato-do-dia.html',
+        controller: 'PratoDoDiaCtrl'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.eleicaoDePratos', {
+    url: '/eleicao-de-pratos',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/eleicao-de-pratos.html',
+        controller: 'EleicaoDePratosCtrl'
       }
     }
+  })
+
+  .state('app.rankingDePratos', {
+    url: '/ranking-de-pratos',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/ranking-de-pratos.html',
+        controller: 'RankingDePratosCtrl'
+      }
+    }
+  })
+
+  .state('app.alertas', {
+    url: '/alertas',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/alertas.html',
+        controller: 'AlertasCtrl'
+      }
+    }
+  })
+
+  .state('app.alerta', {
+    url: '/alerta',
+    params: {title: null, text: null, id: null, icon: null},
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/alerta.html',
+        controller: 'AlertaCtrl'
+      }
+    }
+  })
+
+  .state('app.comentarios', {
+    url: '/comentarios',
+    params: {id: null, write: null},
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/comentarios.html',
+        controller: 'ComentariosCtrl'
+      }
+    }
+  })
+
+  .state('noMenu', {
+    abstract: true,
+    templateUrl: 'templates/no-menu.html'
+  })
+
+  .state('login', {
+    url: "/entrar",
+    templateUrl: "templates/login.html",
+    controller: 'LoginCtrl'
+  })
+
+  .state('retrievePassword', {
+    url: "/recuperar-senha",
+    templateUrl: "templates/retrieve-password.html",
+    controller: 'RetrievePasswordCtrl'
+  })
+
+  .state('signUp', {
+    url: "/cadastrar",
+    templateUrl: "templates/sign-up.html",
+    controller: 'SignUpCtrl'
+  })
+
+  .state('termosDeUso', {
+    url: '/termos-de-uso',
+    templateUrl: 'templates/termos-de-uso.html',
+    controller: 'TermosDeUsoCtrl'
   });
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/entrar');
+
 });

@@ -1,1 +1,15 @@
 /* Empty. Add your own CSS if you like */
+i.icon-app-alerts{
+    left: 100%;
+    margin-left: -50px;
+    top: 100%;
+    margin-top: -50px;
+}
+
+i.ion-star {
+	color:black
+}
+
+.card.ranking{
+	margin-bottom: 0px !important;
+}

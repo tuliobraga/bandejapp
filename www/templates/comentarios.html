@@ -1,12 +1,15 @@
 <ion-view view-title="Comentários" ng-init="initialize()">
   <ion-content>
 	<ion-list>
-	  <a class="item item-complex item-right-editable" ng-repeat="comment in comments">
-		<div class="item-content">
-		  <h2></i> {{comment.user}}</h2>
-		  <p>{{comment.text}}</p>
-	    </div>
-	  </a>
+	  	  <ion-item ng-repeat="comment in comments" class="item-button-right">
+			  <h2></i> {{comment.user}}</h2>
+			  <p>{{comment.text}}</p>
+              <div class="buttons">
+                <button ng-hide="comment.user_id != 0" class="button button-assertive" ng-click="deleteComment($index)">
+                    <i class="icon ion-close"></i>
+                </button>
+              </div>
+		  </ion-item>
 	<ion-list>
   </ion-content>
   <!-- align to the bottom of the page -->
